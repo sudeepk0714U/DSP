@@ -1,0 +1,26 @@
+clc;
+
+x = [1 2 3 4];
+h = [2 1 2 1];
+
+y = conv(x,h);
+
+L = length(x);
+M = length(h);
+N = L + M - 1;     
+
+x_pad = [x zeros(1, N-L)];
+h_pad = [h zeros(1, N-M)];
+
+y1 = circular_conv_matrix(x_pad, h_pad);
+
+y4 = cconv(x_pad, h_pad, N);
+
+disp('Linear using conv:')
+disp(y)
+
+disp('Linear using circular_conv_matrix:')
+disp(y1)
+
+disp('Linear using cconv:')
+disp(y4)
