@@ -1,0 +1,14 @@
+function y = circular_conv_matrix(x, h)
+N1 = length(x);
+N2 = length(h);
+N = max(N1, N2);
+if N1 > N2
+    h = [h zeros(1, N1-N2)];
+else
+    x = [x zeros(1, N2-N1)];
+end
+for i = 1:N
+    r(:, i) = circshift(x(:), i-1);
+end
+y = h * r;
+end
